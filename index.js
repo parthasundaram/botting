@@ -73,7 +73,8 @@ function sendTextMessage(sender, text) {
         console.log('Error: ', response.body.error)
     }
     else {
-        first_name = response.body.first_name
+        console.log("Here",response.body.first_name)
+        first_name += response.body.first_name
     }
     })
 
