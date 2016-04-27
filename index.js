@@ -35,24 +35,6 @@ app.post('/webhook/', function (req, res) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
 
-    request({
-        url: 'https://graph.facebook.com/v2.6/'+ sender,
-        qs: {
-            fields: 'first_name,last_name,profile_pic',
-            access_token:token
-        },
-        json:true,
-        method: 'GET'
-        }, function(error, response, body) {
-        if (error) {
-            console.log('Error sending messages: ', error)
-        } else if (response.body.error) {
-            console.log('Error: ', response.body.error)
-        }
-        else console.log(response)
-        })
-
-
         if (event.message && event.message.text) {
             text = event.message.text
             if (text === 'Generic') {
@@ -71,9 +53,36 @@ app.post('/webhook/', function (req, res) {
 })
 
 function sendTextMessage(sender, text) {
-    messageData = {
-        text:text
+
+    var first_name
+    var last_name
+    var profile_pic
+
+    request({
+    url: 'https://graph.facebook.com/v2.6/'+ sender,
+    qs: {
+        fields: 'first_name,last_name,profile_pic',
+        access_token:token
+    },
+    json:true,
+    method: 'GET'
+    }, function(error, response, body) {
+    if (error) {
+        console.log('Error sending messages: ', error)
+    } else if (response.body.error) {
+        console.log('Error: ', response.body.error)
     }
+    else{
+        first_name = response.body.first_name
+        last_name = response.body.last_name
+        profile_pic = response.body.profile_pic
+    }
+    })
+
+    messageData = {
+        text: first_name + text 
+    }
+
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
