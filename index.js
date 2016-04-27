@@ -94,7 +94,7 @@ function sendGenericMessage(sender) {
                 }, {
                     "title": "Second card",
                     "subtitle": "Element #2 of an hscroll",
-                    "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+                    "image_url": "http://vignette2.wikia.nocookie.net/disney/images/5/53/Minnie.jpg/revision/latest?cb=20140415193000",
                     "buttons": [{
                         "type": "postback",
                         "title": "Postback",
