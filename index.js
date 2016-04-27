@@ -34,6 +34,24 @@ app.post('/webhook/', function (req, res) {
     for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i]
         sender = event.sender.id
+
+    request({
+        url: 'https://graph.facebook.com/v2.6/${sender.id}',
+        qs: {
+            fields: 'first_name,last_name,profile_pic',
+            access_token:token
+        },
+        json:true,
+        method: 'GET'
+        }, function(error, response, body) {
+        if (error) {
+            console.log('Error sending messages: ', error)
+        } else if (response.body.error) {
+            console.log('Error: ', response.body.error)
+        }
+        })
+
+
         if (event.message && event.message.text) {
             text = event.message.text
             if (text === 'Generic') {
