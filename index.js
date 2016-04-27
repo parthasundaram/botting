@@ -73,15 +73,9 @@ function sendTextMessage(sender, text) {
         console.log('Error: ', response.body.error)
     }
     else {
-        console.log("Here",response.body.first_name)
-        first_name += response.body.first_name
-    }
-    })
-
     messageData = {
-        text: first_name + text 
+        text: response.body.first_name + text 
     }
-
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:token},
@@ -97,6 +91,10 @@ function sendTextMessage(sender, text) {
             console.log('Error: ', response.body.error)
         }
     })
+    }
+    })
+
+  
 }
 
 function sendGenericMessage(sender) {
