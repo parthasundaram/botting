@@ -72,11 +72,7 @@ function sendTextMessage(sender, text) {
     } else if (response.body.error) {
         console.log('Error: ', response.body.error)
     }
-    else{
-        first_name = response.body.first_name
-        last_name = response.body.last_name
-        profile_pic = response.body.profile_pic
-    }
+    else console.log("Here: ", response.body)
     })
 
     messageData = {
