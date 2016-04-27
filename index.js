@@ -99,7 +99,7 @@ function sendGenericMessage(sender) {
                         "type": "postback",
                         "title": "Postback",
                         "payload": "Payload for second element in a generic bubble",
-                    }],
+                    }]
                 }]
             }
         }
