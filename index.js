@@ -72,11 +72,11 @@ function sendTextMessage(sender, text) {
     } else if (response.body.error) {
         console.log('Error: ', response.body.error)
     }
-    else console.log("Here: ", response.body)
+    else console.log("Here: ", response.body.first_name)
     })
 
     messageData = {
-        text: first_name + text 
+        text: response.body.first_name + text 
     }
 
     request({
