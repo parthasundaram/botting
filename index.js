@@ -49,6 +49,7 @@ app.post('/webhook/', function (req, res) {
         } else if (response.body.error) {
             console.log('Error: ', response.body.error)
         }
+        else console.log(response)
         })
 
 
