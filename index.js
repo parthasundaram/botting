@@ -36,7 +36,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
 
     request({
-        url: 'https://graph.facebook.com/v2.6/'+ sender.id,
+        url: 'https://graph.facebook.com/v2.6/'+ sender,
         qs: {
             fields: 'first_name,last_name,profile_pic',
             access_token:token
@@ -58,11 +58,11 @@ app.post('/webhook/', function (req, res) {
                 sendGenericMessage(sender)
                 continue
             }
-            sendTextMessage(sender, "Text received, echo: " + sender.first_name + text.substring(0, 200))
+            sendTextMessage(sender, "Text received, echo: " + text.substring(0, 200))
         }
         if (event.postback) {
             text = JSON.stringify(event.postback)
-            sendTextMessage(sender, "Postback received: "+ sender.first_name + text.substring(0, 200), token)
+            sendTextMessage(sender, "Postback received: "+ text.substring(0, 200), token)
             continue
         }
     }
