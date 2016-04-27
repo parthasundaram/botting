@@ -36,7 +36,7 @@ app.post('/webhook/', function (req, res) {
         sender = event.sender.id
 
     request({
-        url: 'https://graph.facebook.com/v2.6/'${sender.id},
+        url: 'https://graph.facebook.com/v2.6/'+ sender.id,
         qs: {
             fields: 'first_name,last_name,profile_pic',
             access_token:token
