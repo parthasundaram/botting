@@ -54,7 +54,7 @@ app.post('/webhook/', function (req, res) {
 
 function sendTextMessage(sender, text) {
 
-    var first_name
+    var first_name = "stranger"
     var last_name
     var profile_pic
 
@@ -72,11 +72,13 @@ function sendTextMessage(sender, text) {
     } else if (response.body.error) {
         console.log('Error: ', response.body.error)
     }
-    else console.log("Here: ", response.body.first_name)
+    else {
+        first_name = response.body.first_name
+    }
     })
 
     messageData = {
-        text: response.body.first_name + text 
+        text: first_name + text 
     }
 
     request({
